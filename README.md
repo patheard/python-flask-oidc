@@ -2,7 +2,7 @@
 A [Flask app](https://github.com/pallets/flask/) using [Authlib](https://github.com/lepture/authlib) and [OpenID Connect `private_key_jwt` client authentication](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication).
 
 # Setup
-1. Generate a key pair for the client.
+1. Generate a key pair for the client and register the client's public key with your identity provider.
 ```sh
 openssl genrsa -out private.pem 2048
 openssl rsa -in private.pem -outform PEM -pubout -out public.pem
