@@ -16,7 +16,7 @@ app.config.from_object("config")
 oauth = OAuth(app)
 oauth.register(
     name="logingov",
-    server_metadata_url=app.config["IDENTITY_PROVIDER_CONF_URL"],
+    server_metadata_url=app.config["IDP_CONF_URL"],
     token_endpoint_auth_method=PrivateKeyJWT(),
     client_kwargs={
         "scope": "openid email",
@@ -37,7 +37,7 @@ def login():
     redirect_uri = url_for("auth", _external=True)
     return oauth.logingov.authorize_redirect(
         redirect_uri,
-        acr_values="http://idmanagement.gov/ns/assurance/loa/1",
+        acr_values=app.config["IDP_ACR_VALUES"],
         nonce=generate_token(22),
     )
 
